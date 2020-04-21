@@ -1,0 +1,18 @@
+{
+  "name": "pa-farmer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.js",
+  "scripts": {
+    "clear": "rm dist/inject.js && rm dist/run.js",
+    "build": "mkdir dist & cp src/manifest.json dist/manifest.json & uglifyjs src/inject.js -o dist/inject.js & uglifyjs src/run.js -o dist/run.js"
+  },
+  "author": "Phyllipe Bezerra",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  },
+  "dependencies": {
+    "uglify-js-es6": "^2.8.9"
+  }
+}

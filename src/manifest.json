@@ -1,0 +1,12 @@
+{
+  "name": "Getting Started Example",
+  "version": "1.0",
+  "description": "Build an Extension!",
+  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "content_scripts": [{ 
+    "exclude_matches": [ "*://*.twitch.tv/*.html", "*://*.twitch.tv/*.html?*", "*://*.twitch.tv/*.htm", "*://*.twitch.tv/*.htm?*" ],
+    "matches": [ "*://*.twitch.tv/*" ],
+    "js": ["run.js"]
+  }],
+  "manifest_version": 2
+}
