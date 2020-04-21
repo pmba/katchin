@@ -17,7 +17,7 @@ const divider = () => {
 const getFarmerOptions = () => {
 	const optionsHTML = `
 	<div class="tw-mg-y-05 tw-pd-x-05">
-		<p class="tw-c-text-alt-2 tw-font-size-6 tw-strong tw-upcase">💰 Katchin </p>
+		<p class="tw-c-text-alt-2 tw-font-size-6 tw-strong tw-upcase">Katchin </p>
 	</div>
 	<div class="tw-pd-05">
 		<div class="tw-align-items-center tw-flex"><label
