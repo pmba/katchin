@@ -5,7 +5,7 @@
   "main": "run.js",
   "scripts": {
     "browserify": "browserify src/scripts/main.js -t babelify -o dist/bundle.js",
-    "uglify": "uglifyjs dist/bundle.js -c -b beautify=false,preamble=\"'// Todo'\" -o dist/bundle.min.js",
+    "uglify": "uglifyjs dist/bundle.js -c --comments -o dist/bundle.min.js",
     "build": "npm run browserify && npm run uglify",
     "postbuild": "rm -f ./dist/bundle.js"
   },
