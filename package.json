@@ -4,15 +4,24 @@
   "description": "",
   "main": "run.js",
   "scripts": {
-    "clear": "rm dist/inject.js && rm dist/run.js",
-    "build": "mkdir dist & cp src/manifest.json dist/manifest.json & uglifyjs src/inject.js -o dist/inject.js & uglifyjs src/run.js -o dist/run.js"
+    "browserify": "browserify src/scripts/main.js -t babelify -o dist/bundle.js",
+    "uglify": "uglifyjs dist/bundle.js -c -b beautify=false,preamble=\"'// Todo'\" -o dist/bundle.min.js",
+    "build": "npm run browserify && npm run uglify",
+    "postbuild": "rm -f ./dist/bundle.js"
   },
   "author": "Phyllipe Bezerra",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^6.8.0"
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^8.0.0",
+    "eslint": "^6.8.0",
+    "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "@types/chrome": "0.0.104",
+    "path": "^0.12.7",
+    "uglify-es": "^3.3.9",
     "uglify-js-es6": "^2.8.9"
   }
 }

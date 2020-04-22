@@ -6,7 +6,10 @@
   "content_scripts": [{ 
     "exclude_matches": [ "*://*.twitch.tv/*.html", "*://*.twitch.tv/*.html?*", "*://*.twitch.tv/*.htm", "*://*.twitch.tv/*.htm?*" ],
     "matches": [ "*://*.twitch.tv/*" ],
-    "js": ["run.js"]
+    "js": ["content.js"]
   }],
+  "web_accessible_resources": [
+    "scripts/main.js"
+ ],
   "manifest_version": 2
 }
