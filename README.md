@@ -21,8 +21,9 @@ moedas para você, assim como salvar suas preferências.
 
 ## Próximos Passos :soon:
 
+- [ ] Adicionar versão do README em inglês
 - [ ] Salvar os canais ativados no Storage do navegador
-- [ ] Inserir Links nas condigurações
+- [ ] Inserir Links nas configurações
 - [ ] Inserir opção de reportar problema
 - [ ] Realizar testes em outros navegadores
 - [ ] Disparar o minerador ao ativar nas configurações
