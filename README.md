@@ -1,6 +1,6 @@
-# <center>:sparkles: Katchin :sparkles:</center>
+# <div align="center">:sparkles: Katchin :sparkles:</div>
 
-<center>
+<div align="center">
 
 [![GPLv3 license](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE.md)
 ![GitHub top language](https://img.shields.io/github/languages/top/pmba/twitch-katchin)
@@ -8,10 +8,9 @@
 
 ![GitHub contributors](https://img.shields.io/github/contributors/pmba/twitch-katchin)
 ![GitHub last commit](https://img.shields.io/github/last-commit/pmba/twitch-katchin)
-
 ![GitHub stars](https://img.shields.io/github/stars/pmba/twitch-katchin)
 
-</center>
+</div>
 
 ## O que é :question:
 
