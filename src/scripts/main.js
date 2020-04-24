@@ -4,7 +4,7 @@
  * Copyright (c) 2020 Phyllipe Bezerra
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
+ * of software and associated documentation files (the "Software"), to deal
  * in the Software without limitation of the rights to use, copy, modify, merge,
  * and/or publish copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
@@ -38,10 +38,33 @@
  * 
  */
 
-const { introduction, kLog, pass } = require("./utils");
+const { introduction, pass } = require("./utils");
 const { Divider, Options } = require("./components");
+const { 
+	addChannelToConfig, 
+	removeChannelFromConfig, 
+	isChannelConfigured
+} = require("./storaging");
+const { startRoutine } = require("./farmer");
 
-introduction();
+let pointsWrapperLoaded = false;
+
+const setupPointsWrapper = () => {
+	const active = isChannelConfigured();
+	const pointsWrapper = document.querySelector("div[data-test-selector=\"community-points-summary\"]");
+
+	if (!pointsWrapper) return;
+
+	// Remove if already exists one
+	const existentIndicator = document.getElementById("katchin-status-dot-indicator");
+	if (existentIndicator) pointsWrapper.removeChild(existentIndicator);
+
+	const statusIndicator = document.createElement("div");
+	const colorRGB = active ? "0, 255, 127" : "255, 0, 0";
+	statusIndicator.id = "katchin-status-dot-indicator";
+	statusIndicator.style = `left: 6px;bottom: 4px;height: 10px;width: 10px;background-color: rgba(${colorRGB});border-radius: 6px;position: absolute;box-shadow: 0px 0px 5px 1px rgba(${colorRGB}, 0.5);`;
+	pointsWrapper.appendChild(statusIndicator);
+};
 
 const configSettings = (wrapper) => {
 	const lastSettingOp = wrapper.children[0]
@@ -50,13 +73,26 @@ const configSettings = (wrapper) => {
 		
 	lastSettingOp.appendChild(Divider());
 	lastSettingOp.appendChild(Options());
+
+	const switchQuery = require("./components").switchActivateQuery;	
+	const activateSwitch = document.querySelector(switchQuery);
+
+	const isConfigured = isChannelConfigured();
+	activateSwitch.checked = isConfigured;
+
+	activateSwitch.addEventListener("change", function() {		
+		if (this.checked) addChannelToConfig();
+		else removeChannelFromConfig();
+
+		setupPointsWrapper();
+	});
 };
 
-window.addEventListener("load", function() {
-	kLog("[+] Adicionando Observer");
-
+const setup = () => {
 	const popoverAttr = "chat-settings-balloon";
-	const targetNode = this.document.querySelector("div[data-test-selector=\"chat-input-buttons-container\"]");
+	const pointsAttr = "community-points-summary";
+
+	const targetNode = document.querySelector("div[data-test-selector=\"chat-input-buttons-container\"]");
 	const nodeConfig = { attributes: false, childList: true, subtree: true };
 
 	const callback = function(mutationsList) {
@@ -66,9 +102,18 @@ window.addEventListener("load", function() {
 				if (type === "childList" && addedNodes.length > 0) {
                     
 					addedNodes.forEach(node => {
-
 						if (node.getAttribute("data-a-target") === popoverAttr) {
-							return configSettings(node); 
+							configSettings(node); 
+						} else if (
+							!pointsWrapperLoaded && 
+							node.children && 
+							node.children.length > 0
+						) {
+							const pointsMaybe = node.children[0];
+							if (pointsMaybe.getAttribute("data-test-selector") == pointsAttr) {
+								pointsWrapperLoaded = true;
+								setupPointsWrapper();
+							}
 						}
 					});
 				}
@@ -78,4 +123,12 @@ window.addEventListener("load", function() {
 	
 	const observer = new MutationObserver(callback);
 	observer.observe(targetNode, nodeConfig);
-}, false);
+
+	setTimeout(() => {
+		startRoutine();
+		setupPointsWrapper();
+		introduction();
+	}, 500);
+}; 
+
+setup();

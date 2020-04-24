@@ -12,7 +12,7 @@ module.exports.introduction = () => {
 	this.kLog("💻 Desenvolvido por Phyllipe Bezerra", "#ffdd1f");
 	this.kLog("\t  Github: https://github.com/pmba", "#e6e6e6");
 	this.kLog("\t Twitter: https://twitter.com/phipslon", "#1fc0ff");
-	this.kLog("😎 Use e abuse!", "#ffdd1f");
+	this.kLog("😎 Aproveite!", "#ffdd1f");
 	this.kLog("\n");
 };
 

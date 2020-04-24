@@ -1,0 +1,19 @@
+{
+  "name": "Katchin",
+  "version": "1.0",
+  "description": "Katchin é uma extensão para farmar as moedas da twitch para você, sem esquecimento e todas possíveis.",
+  "permissions": ["activeTab", "declarativeContent", "storage", "<all_urls>"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [{ 
+    "exclude_matches": [ "*://www.twitch.tv/", "*://*.twitch.tv/*.html", "*://*.twitch.tv/*.html?*", "*://*.twitch.tv/*.htm", "*://*.twitch.tv/*.htm?*" ],
+    "matches": [ "*://*.twitch.tv/*" ],
+    "js": ["content.js"]
+  }],
+  "web_accessible_resources": [
+    "bundle.min.js"
+ ],
+  "manifest_version": 2
+}

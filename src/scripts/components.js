@@ -1,9 +1,11 @@
 "use strict";
 
+const getToggleId = (title) => "toggle-" + title.toLowerCase().replace(/ /g, "-");
+
 const OptionButton = (title) => {
 	return `
     <div class="tw-full-width tw-relative">
-        <button
+        <button href="mailto:phmbalves@gmail.com"
             class="tw-block tw-border-radius-medium tw-full-width tw-interactable tw-interactable--alpha tw-interactable--hover-enabled tw-interactive">
             <div class="tw-align-items-center tw-flex tw-pd-05 tw-relative">
                 <div class="tw-flex-grow-1">${title}</div>
@@ -13,7 +15,7 @@ const OptionButton = (title) => {
 };
 
 const OptionSwitch = (title) => {
-	const opId = "toggle-" + title.toLowerCase().replace(/ /g, "-");
+	const opId = getToggleId(title);
 	return `
     <div class="tw-pd-05">
 		<div class="tw-align-items-center tw-flex"><label
@@ -27,6 +29,8 @@ const OptionSwitch = (title) => {
 	</div>`;
 };
 
+module.exports.switchActivateQuery = "";
+
 module.exports.Divider = () => {
 	const divider = document.createElement("div");
 	divider.classList = "tw-border-t tw-mg-t-1 tw-mg-x-05 tw-pd-b-1";
@@ -34,16 +38,20 @@ module.exports.Divider = () => {
 };
 
 module.exports.Options = () => {
+	const toggleTitle = "Ativado nesse canal";
+	this.switchActivateQuery = `input[id=${getToggleId(toggleTitle)}]`;
+
 	const optionsHTML = `
 	<div class="tw-mg-y-05 tw-pd-x-05">
 		<p class="tw-c-text-alt-2 tw-font-size-6 tw-strong tw-upcase">Katchin </p>
 	</div>
-	${new OptionSwitch("Ativado nesse canal")}
-    ${new OptionButton("Reportar Problema")}
-    ${new OptionButton("Entrar em Contato")}
+	${OptionSwitch(toggleTitle)}
+    ${OptionButton("Reportar Problema")}
+    ${OptionButton("Entrar em Contato")}
 	`;
 
 	const opDiv = document.createElement("div");
+	opDiv.classList = "tw-mg-y-05 tw-pd-x-05";
 	opDiv.innerHTML = optionsHTML;
 	return opDiv;
 };
