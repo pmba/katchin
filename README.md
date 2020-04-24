@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![GPLv3 license](https://img.shields.io/badge/License-Apache-blue.svg)](LICENSE.md)
+[![GPLv3 license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
 ![GitHub top language](https://img.shields.io/github/languages/top/pmba/twitch-katchin)
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/pmba/twitch-katchin)
 
@@ -21,8 +21,9 @@ moedas para você, assim como salvar suas preferências.
 
 ## Próximos Passos :soon:
 
+- [ ] Adicionar versão do README em inglês
 - [ ] Salvar os canais ativados no Storage do navegador
-- [ ] Inserir Links nas condigurações
+- [ ] Inserir Links nas configurações
 - [ ] Inserir opção de reportar problema
 - [ ] Realizar testes em outros navegadores
 - [ ] Disparar o minerador ao ativar nas configurações
