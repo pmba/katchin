@@ -92,7 +92,7 @@ const setup = () => {
 	const popoverAttr = "chat-settings-balloon";
 	const pointsAttr = "community-points-summary";
 
-	const targetNode = document.querySelector("div[data-test-selector=\"chat-input-buttons-container\"]");
+	let targetNode = document.querySelector("div[data-test-selector=\"chat-input-buttons-container\"]");
 	const nodeConfig = { attributes: false, childList: true, subtree: true };
 
 	const callback = function(mutationsList) {
@@ -120,14 +120,25 @@ const setup = () => {
 			});
 		} catch (err) { pass(); }
 	};
-	
-	const observer = new MutationObserver(callback);
-	observer.observe(targetNode, nodeConfig);
 
-	setTimeout(() => {
-		startRoutine();
-		setupPointsWrapper();
-		introduction();
+	const startObserver = () => {
+		const observer = new MutationObserver(callback);
+		observer.observe(targetNode, nodeConfig);
+	
+		setTimeout(() => {
+			startRoutine();
+			setupPointsWrapper();
+			introduction();
+		}, 500);
+	};
+	
+	const checkConfigState = setInterval(() => {
+		targetNode = document.querySelector("div[data-test-selector=\"chat-input-buttons-container\"]");
+		
+		if (targetNode) {
+			clearInterval(checkConfigState);
+			startObserver();
+		}
 	}, 500);
 }; 
 
