@@ -1,7 +1,7 @@
-# <div align="center"><div style="width: 200px;">![alt text](./res/icon.png "Logo Title Text 1")</div></div>
+# <div align="center"><img src="./res/icon.png" width="150px"/></div>
 
 <div align="center">
-
+  
 [![GPLv3 license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
 ![GitHub top language](https://img.shields.io/github/languages/top/pmba/twitch-katchin)
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/pmba/twitch-katchin)
