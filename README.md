@@ -1,4 +1,4 @@
-# <div align="center">:sparkles: Katchin :sparkles:</div>
+# <div align="center"><div style="width: 200px;">![alt text](./res/icon.png "Logo Title Text 1")</div></div>
 
 <div align="center">
 
