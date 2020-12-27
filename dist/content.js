@@ -1,18 +1,7 @@
 "use strict";
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	const { id } = request
-
-	switch (id) {
-		case 'katchin-load-script':
-			loadScript()
-			break;
-		default:
-			break;
-	}
-});
-
-const loadScript = () => {
+(async () => {
+	// eslint-disable-next-line no-undef
 	const src = chrome.runtime.getURL("bundle.min.js");
 	
 	const script = this.document.createElement("script");
@@ -24,6 +13,4 @@ const loadScript = () => {
 	|| this.document.documentElement;
 
 	head.insertBefore(script, head.lastChild);	
-}
-
-loadScript()
+})();
